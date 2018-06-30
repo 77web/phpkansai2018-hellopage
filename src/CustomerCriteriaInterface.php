@@ -11,4 +11,7 @@ namespace Quartetcom\HelloPage;
  */
 interface CustomerCriteriaInterface
 {
+    public function getTel(): string;
+
+    public function getKeyword(): string;
 }
