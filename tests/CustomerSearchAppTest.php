@@ -11,9 +11,9 @@ class CustomerSearchAppTest extends TestCase
 {
     public function test()
     {
-        $get = [];
+        $get = ['get'];
         $criteria = $this->createMock(CustomerCriteriaInterface::class);
-        $filteredCustomers = [];
+        $filteredCustomers = ['filtered'];
 
         /** @var CustomerCriteriaBuilderInterface|MockObject $criteriaBuilder */
         $criteriaBuilder = $this->createMock(CustomerCriteriaBuilderInterface::class);
