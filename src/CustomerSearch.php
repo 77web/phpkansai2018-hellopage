@@ -12,6 +12,14 @@ class CustomerSearch implements CustomerSearchInterface
     private $dataSource;
 
     /**
+     * @param CustomerDataSourceInterface $dataSource
+     */
+    public function __construct(CustomerDataSourceInterface $dataSource)
+    {
+        $this->dataSource = $dataSource;
+    }
+
+    /**
      * @param CustomerCriteriaInterface $criteria
      * @return array
      */
@@ -21,13 +29,13 @@ class CustomerSearch implements CustomerSearchInterface
 
         $foundCustomers = [];
         foreach ($allCustomers as $customer) {
-            if (strpos($customer['tel'], $criteria->getTel()) === 0) {
+            if ($criteria->getTel() && strpos($customer['tel'], $criteria->getTel()) === 0) {
                 $foundCustomers[] = $customer;
-            } elseif (strpos($customer['company_name'], $criteria->getKeyword()) !== false) {
+            } elseif ($criteria->getKeyword() && strpos($customer['company_name'], $criteria->getKeyword()) !== false) {
                 $foundCustomers[] = $customer;
-            } elseif (strpos($customer['name'], $criteria->getKeyword()) !== false) {
+            } elseif ($criteria->getKeyword() && strpos($customer['name'], $criteria->getKeyword()) !== false) {
                 $foundCustomers[] = $customer;
-            } elseif (strpos($customer['project_name'], $criteria->getKeyword()) !== false) {
+            } elseif ($criteria->getKeyword() && strpos($customer['project_name'], $criteria->getKeyword()) !== false) {
                 $foundCustomers[] = $customer;
             }
         }
